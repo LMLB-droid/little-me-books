@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Books — Little Me Books</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:       #3A7BD5;
+      --blue-dark:  #2563EB;
+      --blue-deeper:#1E3A6E;
+      --blue-light: #EBF4FF;
+      --blue-mid:   #BFDBFE;
+      --white:      #FFFFFF;
+      --grey-50:    #F7F8FA;
+      --grey-100:   #F0F2F5;
+      --grey-200:   #E5E7EB;
+      --grey-400:   #9CA3AF;
+      --grey-600:   #6B7280;
+      --grey-800:   #1F2937;
+      --radius:     16px;
+      --shadow:     0 4px 24px rgba(58,123,213,0.10);
+      --shadow-lg:  0 8px 40px rgba(58,123,213,0.18);
+    }
+    body { font-family: 'Nunito', sans-serif; color: var(--grey-800); background: var(--grey-50); }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 0 5%;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 1.4rem;
+      color: var(--blue-deeper);
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.2rem;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; font-weight: 600; font-size: 0.95rem; }
+    .nav-links a { color: var(--grey-600); transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white !important; padding: 10px 22px; border-radius: 50px;
+      font-weight: 700; transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(58,123,213,0.4); }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(160deg, var(--white) 0%, var(--blue-light) 100%);
+      padding: 60px 5% 50px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--blue-deeper);
+      margin-bottom: 12px;
+    }
+    .page-header p { color: var(--grey-600); font-size: 1.05rem; max-width: 520px; margin: 0 auto; }
+
+    /* FILTER TABS */
+    .filter-bar { background: white; border-bottom: 1px solid var(--grey-200); padding: 0 5%; }
+    .filter-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; gap: 4px; overflow-x: auto; padding: 14px 0;
+    }
+    .filter-tab {
+      white-space: nowrap;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      border: 2px solid var(--grey-200);
+      background: white;
+      color: var(--grey-600);
+      transition: all .2s;
+    }
+    .filter-tab:hover { border-color: var(--blue-mid); color: var(--blue); }
+    .filter-tab.active {
+      background: var(--blue); border-color: var(--blue); color: white;
+    }
+
+    /* CATALOG GRID */
+    .catalog-section { padding: 50px 5%; }
+    .catalog-inner { max-width: 1200px; margin: 0 auto; }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .book-card {
+      background: white;
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .book-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .book-cover-wrap {
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .c1 { background: linear-gradient(145deg, #667eea, #764ba2); }
+    .c2 { background: linear-gradient(145deg, #f093fb, #f5576c); }
+    .c3 { background: linear-gradient(145deg, #4facfe, #00f2fe); }
+    .c4 { background: linear-gradient(145deg, #43e97b, #38f9d7); }
+    .c5 { background: linear-gradient(145deg, #fa709a, #fee140); }
+    .c6 { background: linear-gradient(145deg, #a18cd1, #fbc2eb); }
+    .c7 { background: linear-gradient(145deg, #f7971e, #ffd200); }
+    .c8 { background: linear-gradient(145deg, #12c2e9, #c471ed); }
+    .cover-age-badge {
+      position: absolute; bottom: 12px; right: 12px;
+      background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
+      color: white; font-size: 0.78rem; font-weight: 800;
+      padding: 4px 10px; border-radius: 50px;
+    }
+    .cover-new-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: #F59E0B; color: white;
+      font-size: 0.72rem; font-weight: 800;
+      padding: 4px 10px; border-radius: 50px;
+    }
+    .book-body { padding: 22px; }
+    .book-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700; font-size: 1.1rem; color: var(--blue-deeper);
+      margin-bottom: 8px;
+    }
+    .book-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.6; margin-bottom: 14px; }
+    .book-meta {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.82rem; color: var(--grey-400); font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .book-meta span { display: flex; align-items: center; gap: 4px; }
+    .book-rating { color: #FBBF24; }
+    .book-cta {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white; border: none; border-radius: 50px;
+      padding: 12px; font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 0.92rem; cursor: pointer;
+      transition: opacity .2s, transform .2s;
+    }
+    .book-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--blue-deeper), var(--blue-dark));
+      color: white; padding: 60px 5%; text-align: center;
+    }
+    .cta-banner h2 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .cta-banner p { opacity: 0.85; margin-bottom: 28px; font-size: 1rem; }
+    .btn-white {
+      background: white; color: var(--blue-deeper);
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: 1rem; padding: 14px 32px; border-radius: 50px;
+      border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+
+    footer {
+      background: var(--grey-800); color: white; padding: 30px 5%;
+      text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 600;
+    }
+    footer a { color: rgba(255,255,255,0.6); margin: 0 10px; }
+
+    .hidden { display: none; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">📖</div>
+      Little Me Books
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="catalog.html">Books</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="customize.html" class="nav-cta">Create Your Book ✨</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Choose Their Adventure 📚</h1>
+  <p>Every title is fully personalised — your child becomes the hero with their own face and name throughout.</p>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-tab active" onclick="filterBooks('all', this)">All Books</button>
+    <button class="filter-tab" onclick="filterBooks('2-4', this)">Ages 2–4</button>
+    <button class="filter-tab" onclick="filterBooks('3-6', this)">Ages 3–6</button>
+    <button class="filter-tab" onclick="filterBooks('4-8', this)">Ages 4–8</button>
+    <button class="filter-tab" onclick="filterBooks('bedtime', this)">Bedtime Stories</button>
+    <button class="filter-tab" onclick="filterBooks('adventure', this)">Adventures</button>
+    <button class="filter-tab" onclick="filterBooks('new', this)">New Arrivals ✨</button>
+  </div>
+</div>
+
+<section class="catalog-section">
+  <div class="catalog-inner">
+    <div class="books-grid" id="books-grid">
+
+      <div class="book-card" data-ages="3-6,4-8" data-tags="adventure">
+        <div class="book-cover-wrap c1">🌟<div class="cover-age-badge">Ages 3–7</div></div>
+        <div class="book-body">
+          <div class="book-title">The Magical Adventure</div>
+          <div class="book-desc">When a mysterious map appears under their pillow, your child embarks on a quest through enchanted forests and rainbow mountains to find the greatest treasure of all.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 4.9</span>
+            <span>📖 28 pages</span>
+            <span>Ages 3–7</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="2-4" data-tags="adventure">
+        <div class="book-cover-wrap c2">🦁<div class="cover-age-badge">Ages 2–5</div></div>
+        <div class="book-body">
+          <div class="book-title">Brave Like Me</div>
+          <div class="book-desc">A gentle story for little ones who feel nervous about trying new things. Your child discovers just how brave and wonderful they truly are.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 4.8</span>
+            <span>📖 24 pages</span>
+            <span>Ages 2–5</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="4-8" data-tags="adventure">
+        <div class="book-cover-wrap c3">🚀<div class="cover-age-badge">Ages 4–8</div></div>
+        <div class="book-body">
+          <div class="book-title">To the Stars!</div>
+          <div class="book-desc">Blast off! Your child becomes an astronaut on a mission to save a distant galaxy. Packed with planets, aliens, and cosmic adventures.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 4.9</span>
+            <span>📖 30 pages</span>
+            <span>Ages 4–8</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="3-6" data-tags="adventure">
+        <div class="book-cover-wrap c4">🌊<div class="cover-age-badge">Ages 3–6</div></div>
+        <div class="book-body">
+          <div class="book-title">Ocean Explorer</div>
+          <div class="book-desc">Dive deep! Your child explores the magical world beneath the waves, befriending sea turtles, dolphins, and discovering sunken treasure.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★☆</span> 4.7</span>
+            <span>📖 26 pages</span>
+            <span>Ages 3–6</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="4-8,3-6" data-tags="adventure">
+        <div class="book-cover-wrap c5">🏫<div class="cover-age-badge">Ages 4–7</div></div>
+        <div class="book-body">
+          <div class="book-title">My First Day</div>
+          <div class="book-desc">Starting school is a big deal! This heartwarming story follows your child through their first day — the nerves, the new friends, and the joy of discovery.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 4.9</span>
+            <span>📖 28 pages</span>
+            <span>Ages 4–7</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="2-4" data-tags="bedtime">
+        <div class="book-cover-wrap c6">🌙<div class="cover-age-badge">Ages 2–5</div></div>
+        <div class="book-body">
+          <div class="book-title">Dreamland Journey</div>
+          <div class="book-desc">A soothing bedtime story where your child floats on a cloud through a world of sleepy animals, twinkling stars, and cosy dreams.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 4.8</span>
+            <span>📖 22 pages</span>
+            <span>Ages 2–5</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="3-6,4-8" data-tags="adventure,new">
+        <div class="book-cover-wrap c7">🐉<div class="cover-age-badge">Ages 4–8</div><div class="cover-new-badge">NEW ✨</div></div>
+        <div class="book-body">
+          <div class="book-title">Dragon Tamer</div>
+          <div class="book-desc">Deep in the misty mountains lives a lonely dragon. Only your child has what it takes to befriend the fearsome beast and bring peace to the land.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 5.0</span>
+            <span>📖 32 pages</span>
+            <span>Ages 4–8</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-card" data-ages="2-4" data-tags="bedtime,new">
+        <div class="book-cover-wrap c8">🌈<div class="cover-age-badge">Ages 2–4</div><div class="cover-new-badge">NEW ✨</div></div>
+        <div class="book-body">
+          <div class="book-title">Rainbow Wisher</div>
+          <div class="book-desc">After a rainy day, your child discovers that every colour of the rainbow holds a special wish — and they're the only one who can collect them all.</div>
+          <div class="book-meta">
+            <span><span class="book-rating">★★★★★</span> 4.9</span>
+            <span>📖 20 pages</span>
+            <span>Ages 2–4</span>
+          </div>
+          <button class="book-cta" onclick="window.location='customize.html'">✨ Personalise This Book</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Can't Decide? Start With Our Most Popular ⭐</h2>
+  <p>The Magical Adventure is loved by thousands of children worldwide — it's a great first choice.</p>
+  <a href="customize.html"><button class="btn-white">Personalise The Magical Adventure →</button></a>
+</div>
+
+<footer>
+  <span>© 2026 Little Me Books</span>
+  <a href="index.html">Home</a>
+  <a href="catalog.html">Books</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="#">Contact</a>
+</footer>
+
+<script>
+  function filterBooks(tag, btn) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.book-card').forEach(card => {
+      if (tag === 'all') {
+        card.classList.remove('hidden');
+        return;
+      }
+      const ages = card.dataset.ages || '';
+      const tags = card.dataset.tags || '';
+      const combined = ages + ',' + tags;
+      if (combined.includes(tag)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

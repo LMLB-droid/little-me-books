@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Little Me Books — Personalised Children's Books</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #3A7BD5;
+      --blue-dark:  #2563EB;
+      --blue-deeper:#1E3A6E;
+      --blue-light: #EBF4FF;
+      --blue-mid:   #BFDBFE;
+      --white:      #FFFFFF;
+      --grey-50:    #F7F8FA;
+      --grey-100:   #F0F2F5;
+      --grey-200:   #E5E7EB;
+      --grey-400:   #9CA3AF;
+      --grey-600:   #6B7280;
+      --grey-800:   #1F2937;
+      --radius:     16px;
+      --shadow:     0 4px 24px rgba(58,123,213,0.10);
+      --shadow-lg:  0 8px 40px rgba(58,123,213,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--grey-800);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 0 5%;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--blue-deeper);
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.2rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .nav-links a {
+      color: var(--grey-600);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(58,123,213,0.4); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--white) 0%, var(--blue-light) 100%);
+      padding: 80px 5% 60px;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      color: var(--blue-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--blue-deeper);
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--grey-600);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(58,123,213,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(58,123,213,0.45); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--blue);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: 2px solid var(--blue-mid);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); background: var(--blue-light); }
+    .hero-trust {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--grey-400);
+      font-weight: 600;
+    }
+    .trust-avatars {
+      display: flex;
+    }
+    .trust-avatars span {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-left: -8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      background: var(--blue-light);
+    }
+    .trust-avatars span:first-child { margin-left: 0; }
+
+    /* Hero book mockup */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .book-stack {
+      position: relative;
+      width: 340px;
+      height: 400px;
+    }
+    .book-card {
+      position: absolute;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+    }
+    .book-main {
+      width: 240px; height: 300px;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(145deg, #ffecd2, #fcb69f);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      z-index: 3;
+    }
+    .book-main-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+    }
+    .book-spine {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 20px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 20px 0 0 20px;
+    }
+    .book-cover-inner {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+    }
+    .book-cover-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.3;
+      margin-top: 12px;
+    }
+    .book-cover-star {
+      font-size: 2.5rem;
+    }
+    .book-child-name {
+      font-size: 1.4rem;
+      font-weight: 900;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .book-secondary {
+      width: 200px; height: 260px;
+      background: linear-gradient(145deg, #a8edea, #fed6e3);
+      z-index: 2;
+    }
+    .book-left {
+      left: 20px; top: 70px;
+      transform: rotate(-8deg);
+    }
+    .book-right {
+      right: 20px; top: 50px;
+      transform: rotate(6deg);
+      background: linear-gradient(145deg, #ffeaa7, #dfe6e9);
+      z-index: 1;
+    }
+
+    /* floating badges on hero */
+    .float-badge {
+      position: absolute;
+      background: white;
+      border-radius: 14px;
+      padding: 10px 16px;
+      box-shadow: var(--shadow);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      animation: float 3s ease-in-out infinite;
+    }
+    .float-badge.badge-1 { top: 30px; right: 10px; animation-delay: 0s; }
+    .float-badge.badge-2 { bottom: 50px; left: 5px; animation-delay: 1s; }
+    .float-badge .badge-icon { font-size: 1.2rem; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    /* ── HOW IT WORKS ── */
+    .section { padding: 80px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--blue-deeper);
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--grey-600);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 52px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(16.67% + 20px);
+      right: calc(16.67% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue-mid), var(--blue));
+      z-index: 0;
+    }
+    .step {
+      background: white;
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .step:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .step-num {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-icon { font-size: 2rem; margin-bottom: 12px; }
+    .step h3 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue-deeper);
+      margin-bottom: 10px;
+    }
+    .step p { color: var(--grey-600); font-size: 0.95rem; }
+
+    /* ── BOOK CATALOG ── */
+    .catalog { background: var(--grey-50); }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 28px;
+    }
+    .book-tile {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--grey-200);
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .book-tile:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .book-cover {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-1 { background: linear-gradient(145deg, #667eea, #764ba2); }
+    .cover-2 { background: linear-gradient(145deg, #f093fb, #f5576c); }
+    .cover-3 { background: linear-gradient(145deg, #4facfe, #00f2fe); }
+    .cover-4 { background: linear-gradient(145deg, #43e97b, #38f9d7); }
+    .cover-5 { background: linear-gradient(145deg, #fa709a, #fee140); }
+    .cover-6 { background: linear-gradient(145deg, #a18cd1, #fbc2eb); }
+    .book-cover-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(4px);
+      color: white;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .book-tile-body { padding: 20px; }
+    .book-tile-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--blue-deeper);
+      margin-bottom: 6px;
+    }
+    .book-tile-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--grey-400);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .age-badge {
+      background: var(--blue-light);
+      color: var(--blue);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .book-tile-cta {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+    }
+    .book-tile-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── WHY LITTLE ME BOOKS ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: box-shadow .2s;
+    }
+    .feature-card:hover { box-shadow: var(--shadow); }
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: var(--blue-light);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--blue-deeper);
+      margin-bottom: 8px;
+    }
+    .feature-card p { color: var(--grey-600); font-size: 0.93rem; }
+
+    /* ── PRICING ── */
+    .pricing { background: var(--grey-50); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .price-card {
+      background: white;
+      border: 2px solid var(--grey-200);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .price-card.featured {
+      border-color: var(--blue);
+      background: linear-gradient(160deg, white 0%, var(--blue-light) 100%);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 5px 16px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .price-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--grey-600);
+      margin-bottom: 16px;
+    }
+    .price-amount {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--blue-deeper);
+      line-height: 1;
+    }
+    .price-amount sup { font-size: 1.2rem; vertical-align: super; }
+    .price-currency { font-size: 1rem; color: var(--grey-400); margin-bottom: 4px; font-weight: 600; }
+    .price-note { font-size: 0.82rem; color: var(--grey-400); margin-bottom: 24px; font-weight: 600; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 28px; }
+    .price-features li {
+      padding: 8px 0;
+      font-size: 0.92rem;
+      color: var(--grey-600);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--grey-100);
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li span:first-child { color: var(--blue); font-size: 1rem; flex-shrink: 0; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .testimonial {
+      background: white;
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .stars { color: #FBBF24; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--grey-600);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      background: var(--blue-light);
+    }
+    .author-name { font-weight: 700; font-size: 0.92rem; color: var(--blue-deeper); }
+    .author-meta { font-size: 0.8rem; color: var(--grey-400); font-weight: 600; }
+
+    /* ── BOOK VAULT PARTNER ── */
+    .partner-banner {
+      background: linear-gradient(135deg, var(--blue-deeper), var(--blue-dark));
+      color: white;
+      padding: 50px 5%;
+      text-align: center;
+    }
+    .partner-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .partner-banner h2 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .partner-banner p {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 28px;
+    }
+    .partner-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .partner-stat { text-align: center; }
+    .partner-stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .partner-stat-label { font-size: 0.85rem; opacity: 0.75; font-weight: 600; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--blue-light);
+      padding: 80px 5%;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--blue-deeper);
+      margin-bottom: 14px;
+    }
+    .cta-section p { color: var(--grey-600); font-size: 1.05rem; margin-bottom: 32px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--grey-800);
+      color: white;
+      padding: 60px 5% 30px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.92rem;
+      margin-top: 14px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--blue), #5B9DE5);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .footer-col h4 {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.9);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.88rem;
+      transition: color .2s;
+      font-weight: 600;
+    }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.55); }
+
+    /* ── FAQ ── */
+    .faq { background: white; }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 20px 24px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--blue-deeper);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-q:hover { background: var(--grey-50); }
+    .faq-icon { font-size: 1.2rem; color: var(--blue); transition: transform .3s; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s;
+      font-size: 0.93rem;
+      color: var(--grey-600);
+      line-height: 1.7;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; }
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">📖</div>
+      Little Me Books
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="catalog.html">Books</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="customize.html" class="nav-cta">Create Your Book ✨</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        ✨ Personalised just for your child
+      </div>
+      <h1>The Book Where <span>Your Child</span> Is the Star</h1>
+      <p>Upload a photo, enter their name, and we'll create a beautiful hardcover book where the main character looks just like them — delivered worldwide.</p>
+      <div class="hero-buttons">
+        <a href="customize.html" class="btn-primary">Create Your Book ✨</a>
+        <a href="catalog.html" class="btn-secondary">Browse Books</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <span>😊</span><span>😄</span><span>🥰</span><span>😍</span>
+        </div>
+        Loved by 2,000+ families worldwide
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="book-stack">
+
+        <!-- Back books -->
+        <div class="book-card book-secondary book-left"></div>
+        <div class="book-card book-secondary book-right"></div>
+
+        <!-- Main book -->
+        <div class="book-card book-main">
+          <div class="book-main-bg"></div>
+          <div class="book-spine"></div>
+          <div class="book-cover-inner">
+            <div class="book-cover-star">🌟</div>
+            <div class="book-child-name">Olivia's</div>
+            <div class="book-cover-title">Magical<br>Adventure</div>
+            <div style="margin-top:8px;font-size:0.75rem;opacity:0.8;">Little Me Books</div>
+          </div>
+        </div>
+
+        <!-- Floating badges -->
+        <div class="float-badge badge-1">
+          <span class="badge-icon">🎨</span>
+          AI personalised
+        </div>
+        <div class="float-badge badge-2">
+          <span class="badge-icon">🌍</span>
+          Ships worldwide
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="section" id="how-it-works">
+  <div class="section-inner">
+    <p class="section-label">Simple as 1, 2, 3</p>
+    <h2 class="section-title">How Little Me Books Works</h2>
+    <p class="section-sub">From photo to doorstep in just a few clicks — it's magic made simple.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📚</div>
+        <h3>Choose Your Book</h3>
+        <p>Browse our growing collection of enchanting stories — adventures, bedtime tales, first-day-of-school stories and more.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">📸</div>
+        <h3>Upload & Personalise</h3>
+        <p>Upload a photo of your child and enter their name. Our AI transforms the main character to look just like them on every page.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">📦</div>
+        <h3>We Print & Deliver</h3>
+        <p>Your personalised hardcover book is professionally printed and shipped anywhere in the world — usually in 5–7 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOK CATALOG ── -->
+<section class="section catalog" id="books">
+  <div class="section-inner">
+    <p class="section-label">Our Collection</p>
+    <h2 class="section-title">Choose Their Adventure</h2>
+    <p class="section-sub">Every story places your child at the centre of an unforgettable tale.</p>
+
+    <div class="books-grid">
+
+      <div class="book-tile">
+        <div class="book-cover cover-1">
+          🌟
+          <div class="book-cover-label">Ages 3–7</div>
+        </div>
+        <div class="book-tile-body">
+          <div class="book-tile-title">The Magical Adventure</div>
+          <div class="book-tile-meta">
+            <span class="age-badge">Ages 3–7</span>
+            <span>⭐ 4.9</span>
+          </div>
+          <button class="book-tile-cta" onclick="window.location='customize.html'">Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-tile">
+        <div class="book-cover cover-2">
+          🦁
+          <div class="book-cover-label">Ages 2–5</div>
+        </div>
+        <div class="book-tile-body">
+          <div class="book-tile-title">Brave Like Me</div>
+          <div class="book-tile-meta">
+            <span class="age-badge">Ages 2–5</span>
+            <span>⭐ 4.8</span>
+          </div>
+          <button class="book-tile-cta" onclick="window.location='customize.html'">Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-tile">
+        <div class="book-cover cover-3">
+          🚀
+          <div class="book-cover-label">Ages 4–8</div>
+        </div>
+        <div class="book-tile-body">
+          <div class="book-tile-title">To the Stars!</div>
+          <div class="book-tile-meta">
+            <span class="age-badge">Ages 4–8</span>
+            <span>⭐ 4.9</span>
+          </div>
+          <button class="book-tile-cta" onclick="window.location='customize.html'">Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-tile">
+        <div class="book-cover cover-4">
+          🌊
+          <div class="book-cover-label">Ages 3–6</div>
+        </div>
+        <div class="book-tile-body">
+          <div class="book-tile-title">Ocean Explorer</div>
+          <div class="book-tile-meta">
+            <span class="age-badge">Ages 3–6</span>
+            <span>⭐ 4.7</span>
+          </div>
+          <button class="book-tile-cta" onclick="window.location='customize.html'">Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-tile">
+        <div class="book-cover cover-5">
+          🏫
+          <div class="book-cover-label">Ages 4–7</div>
+        </div>
+        <div class="book-tile-body">
+          <div class="book-tile-title">My First Day</div>
+          <div class="book-tile-meta">
+            <span class="age-badge">Ages 4–7</span>
+            <span>⭐ 4.9</span>
+          </div>
+          <button class="book-tile-cta" onclick="window.location='customize.html'">Personalise This Book</button>
+        </div>
+      </div>
+
+      <div class="book-tile">
+        <div class="book-cover cover-6">
+          🌙
+          <div class="book-cover-label">Ages 2–5</div>
+        </div>
+        <div class="book-tile-body">
+          <div class="book-tile-title">Dreamland Journey</div>
+          <div class="book-tile-meta">
+            <span class="age-badge">Ages 2–5</span>
+            <span>⭐ 4.8</span>
+          </div>
+          <button class="book-tile-cta" onclick="window.location='customize.html'">Personalise This Book</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:36px;">
+      <a href="catalog.html" class="btn-secondary">View All Books →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY LITTLE ME BOOKS ── -->
+<section class="section" id="why">
+  <div class="section-inner">
+    <p class="section-label">Why parents love us</p>
+    <h2 class="section-title">More Than Just a Book</h2>
+    <p class="section-sub">We combine cutting-edge AI with professional printing to create a keepsake they'll treasure forever.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Powered Personalisation</h3>
+        <p>Advanced AI technology transforms the illustrations so the main character genuinely looks like your child on every page.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>Name Throughout</h3>
+        <p>Your child's name appears naturally throughout the entire story — not just on the cover.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Premium Hardcover</h3>
+        <p>Professionally printed on thick, high-quality paper with a durable hardcover finish that lasts for years.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Worldwide Delivery</h3>
+        <p>Printed and shipped globally through our Book Vault partnership — delivered to your door in 5–7 business days.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <h3>Perfect Gift</h3>
+        <p>Arrives in beautiful gift packaging, ready to give. Add a personalised message inside the cover.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Safe & Private</h3>
+        <p>Your child's photo is used only to personalise your book and is never stored or shared after processing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section class="section pricing" id="pricing">
+  <div class="section-inner">
+    <p class="section-label">Simple pricing</p>
+    <h2 class="section-title">One Price. Infinite Magic.</h2>
+    <p class="section-sub">No subscriptions, no hidden fees — just one beautiful book.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-title">Softcover</div>
+        <div class="price-currency">From</div>
+        <div class="price-amount"><sup>$</sup>24</div>
+        <div class="price-note">+ shipping</div>
+        <ul class="price-features">
+          <li><span>✓</span> Full AI personalisation</li>
+          <li><span>✓</span> Name throughout story</li>
+          <li><span>✓</span> 28 full-colour pages</li>
+          <li><span>✓</span> Standard shipping</li>
+        </ul>
+        <a href="customize.html"><button class="btn-secondary" style="width:100%;">Get Started</button></a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="popular-badge">⭐ Most Popular</div>
+        <div class="price-title">Hardcover</div>
+        <div class="price-currency">From</div>
+        <div class="price-amount"><sup>$</sup>34</div>
+        <div class="price-note">+ shipping</div>
+        <ul class="price-features">
+          <li><span>✓</span> Full AI personalisation</li>
+          <li><span>✓</span> Name throughout story</li>
+          <li><span>✓</span> 28 full-colour pages</li>
+          <li><span>✓</span> Premium hardcover finish</li>
+          <li><span>✓</span> Gift-ready packaging</li>
+        </ul>
+        <a href="customize.html"><button class="btn-primary" style="width:100%;">Create My Book ✨</button></a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-title">Gift Bundle</div>
+        <div class="price-currency">From</div>
+        <div class="price-amount"><sup>$</sup>59</div>
+        <div class="price-note">+ shipping</div>
+        <ul class="price-features">
+          <li><span>✓</span> 2 hardcover books</li>
+          <li><span>✓</span> Full AI personalisation</li>
+          <li><span>✓</span> Free personalised message</li>
+          <li><span>✓</span> Priority shipping</li>
+          <li><span>✓</span> Luxury gift box</li>
+        </ul>
+        <a href="customize.html"><button class="btn-secondary" style="width:100%;">Get Bundle</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section" id="reviews">
+  <div class="section-inner">
+    <p class="section-label">Real families, real magic</p>
+    <h2 class="section-title">Parents Are Obsessed</h2>
+    <p class="section-sub">Don't take our word for it — here's what families around the world are saying.</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"My daughter screamed with delight when she saw herself as the hero! She makes me read it to her every single night. Best gift I've ever bought."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩</div>
+          <div>
+            <div class="author-name">Sarah M.</div>
+            <div class="author-meta">Mum of 2 · Australia</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"I bought this as a birthday present and my nephew absolutely loves it. The AI illustrations are incredible — it genuinely looks like him!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👨</div>
+          <div>
+            <div class="author-name">James K.</div>
+            <div class="author-meta">Uncle · United Kingdom</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The quality is outstanding. The hardcover feels premium and the personalisation is seamless. My son insists he's a real adventurer now!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩</div>
+          <div>
+            <div class="author-name">Priya R.</div>
+            <div class="author-meta">Mum · United States</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOK VAULT PARTNER ── -->
+<div class="partner-banner">
+  <div class="partner-inner">
+    <div style="font-size:2rem;margin-bottom:14px;">🖨️</div>
+    <h2>Printed & Fulfilled by Book Vault</h2>
+    <p>We partner with Book Vault — the world's leading print-on-demand book service — to ensure every Little Me Book is printed to the highest professional standard and delivered to your door wherever you are in the world.</p>
+    <div class="partner-stats">
+      <div class="partner-stat">
+        <div class="partner-stat-num">150+</div>
+        <div class="partner-stat-label">Countries Shipped To</div>
+      </div>
+      <div class="partner-stat">
+        <div class="partner-stat-num">5–7</div>
+        <div class="partner-stat-label">Day Delivery</div>
+      </div>
+      <div class="partner-stat">
+        <div class="partner-stat-num">100%</div>
+        <div class="partner-stat-label">Satisfaction Guarantee</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ ── -->
+<section class="section faq" id="faq">
+  <div class="section-inner">
+    <p class="section-label">Got questions?</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub" style="margin-bottom:40px;">Everything you need to know about Little Me Books.</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How does the AI personalisation actually work?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          When you upload a photo, our AI analyses your child's facial features, skin tone, hair colour and style. It then adapts every illustration in the book so the main character is a storybook-style representation of your child. The result looks naturally hand-illustrated — not a photo paste-in.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is my child's photo kept private?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Absolutely. Your child's photo is used solely to generate the personalised illustrations. Once the book files are created, the original photo is permanently deleted from our servers. We never store, share, or use photos for any other purpose.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How long does delivery take?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Most orders are processed and printed within 2–3 business days, then shipped via our Book Vault partnership. Standard delivery typically takes 5–7 business days. Express options are available at checkout for many countries.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What if I'm not happy with how it looks?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          We offer a 100% satisfaction guarantee. If you're not happy with the personalisation, contact us before approving your order and we'll re-generate the illustrations for free. If you receive a damaged or defective book, we'll reprint and reship at no cost.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What age range are the books for?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Our books are designed for children aged 2–8. Each title has a specific age recommendation listed, ranging from picture-heavy toddler books to more text-rich early reader stories. We're adding new titles regularly!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Do you ship internationally?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes! Through our Book Vault partnership we ship to over 150 countries worldwide. Shipping costs and delivery times vary by destination and will be calculated at checkout.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <h2>Ready to Create Something Magical? ✨</h2>
+  <p>Join thousands of families who've given their child the gift of being the hero of their own story.</p>
+  <a href="customize.html" class="btn-primary" style="font-size:1.1rem; padding:16px 36px;">
+    Create Your Book Now →
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">📖</div>
+          Little Me Books
+        </div>
+        <p>Creating magical, personalised children's books where every child is the star. Printed professionally and delivered worldwide through our Book Vault partnership.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Our Books</h4>
+        <ul>
+          <li><a href="catalog.html">All Titles</a></li>
+          <li><a href="catalog.html">Ages 2–4</a></li>
+          <li><a href="catalog.html">Ages 4–7</a></li>
+          <li><a href="catalog.html">Gift Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Book Vault Partnership</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Little Me Books. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="#">Terms of Service</a> &nbsp;·&nbsp;
+        <a href="#">Cookie Policy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
