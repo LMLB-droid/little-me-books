@@ -1,5 +1,5 @@
 # The Magical Adventure
-### A Little Me Books Personalised Story
+### A Little Me Library Personalised Story
 **For ages 3–7 · 28 pages · Hardcover & Softcover**
 
 ---
@@ -16,7 +16,7 @@
 
 **Text:**
 # [NAME]'s Magical Adventure
-*A Little Me Books Story*
+*A Little Me Library Story*
 
 ---
 
@@ -292,7 +292,7 @@ And [NAME] understood something now that [NAME] hadn't understood before.
 **Text:**
 *"In this magical story, [NAME] is the hero — personalised with their name on every page and their face in every illustration. A keepsake they'll treasure forever."*
 
-Little Me Books · littlemebooks.com · Printed by Book Vault
+Little Me Library · littlemebooks.com · Printed by Book Vault
 
 ---
 

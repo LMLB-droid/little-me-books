@@ -1,11 +1,11 @@
-# Little Me Books — Business & Technical Plan
+# Little Me Library — Business & Technical Plan
 *Last updated: May 2026*
 
 ---
 
 ## 1. Business Overview
 
-**Little Me Books** is a personalised children's book company. Parents upload a photo of their child and enter their name. AI technology transforms every character illustration in the book to resemble that child, and their name appears naturally throughout the story. Books are printed on demand by Book Vault and shipped globally.
+**Little Me Library** is a personalised children's book company. Parents upload a photo of their child and enter their name. AI technology transforms every character illustration in the book to resemble that child, and their name appears naturally throughout the story. Books are printed on demand by Book Vault and shipped globally.
 
 **Tagline:** *The book where YOUR child is the star.*
 
@@ -200,4 +200,4 @@ const paymentIntent = await stripe.paymentIntents.create({
 
 ---
 
-*Built with Little Me Books Cowork session · littlemebooks.com*
+*Built with Little Me Library Cowork session · littlemebooks.com*
