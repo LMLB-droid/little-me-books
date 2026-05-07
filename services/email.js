@@ -12,8 +12,19 @@
 
 const { Resend } = require('resend');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_EMAIL = process.env.FROM_EMAIL || 'orders@littlemelibrary.com';
+
+// Lazy load so a missing key doesn't crash the server on startup
+let _resend = null;
+function getResend() {
+  if (!_resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('RESEND_API_KEY is not set — add it in your Railway environment variables');
+    }
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 /**
  * Send order confirmation email
@@ -21,7 +32,7 @@ const FROM_EMAIL = process.env.FROM_EMAIL || 'orders@littlemelibrary.com';
 async function sendOrderConfirmation({ customerEmail, customerName, childName, bookTitle, orderId, format }) {
   console.log(`[Email] Sending order confirmation to ${customerEmail}`);
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResend().emails.send({
     from: `Little Me Library <${FROM_EMAIL}>`,
     to: customerEmail,
     subject: `We're creating ${childName}'s book! 🌟`,
@@ -79,7 +90,7 @@ async function sendOrderConfirmation({ customerEmail, customerName, childName, b
 async function sendPreviewReadyEmail({ customerEmail, customerName, childName, orderId, previewPdfUrl, approveUrl }) {
   console.log(`[Email] Sending preview ready email to ${customerEmail}`);
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResend().emails.send({
     from: `Little Me Library <${FROM_EMAIL}>`,
     to: customerEmail,
     subject: `${childName}'s book preview is ready! Please approve 👀`,
@@ -128,7 +139,7 @@ async function sendPreviewReadyEmail({ customerEmail, customerName, childName, o
 async function sendPrintingConfirmation({ customerEmail, customerName, childName, orderId, estimatedDelivery }) {
   console.log(`[Email] Sending printing confirmation to ${customerEmail}`);
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResend().emails.send({
     from: `Little Me Library <${FROM_EMAIL}>`,
     to: customerEmail,
     subject: `${childName}'s book is being printed! 📚`,
