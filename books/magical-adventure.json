@@ -1,0 +1,151 @@
+{
+  "id": "magical-adventure",
+  "title": "The Magical Adventure",
+  "subtitle": "A Little Me Library Personalised Story",
+  "ageRange": "3-7",
+  "wordCount": 950,
+  "themes": ["bravery", "kindness", "friendship", "self-belief"],
+  "coverIllustrationPrompt": "[NAME] as a child standing at the edge of a magical glowing forest, wearing a small explorer's backpack, looking adventurous and brave, morning golden light, children's picture book illustration style, soft watercolour, friendly and warm",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "type": "cover",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child standing at the edge of a magical glowing forest, wearing a small red explorer's backpack, looking adventurous and brave, morning golden light streaming through trees, children's picture book illustration, soft watercolour style, warm and friendly",
+      "text": null
+    },
+    {
+      "pageNumber": 2,
+      "type": "dedication",
+      "hasIllustration": false,
+      "illustrationPrompt": null,
+      "text": "This book belongs to the bravest, most wonderful [NAME] in the whole wide world. May you always believe in magic — because you are magic."
+    },
+    {
+      "pageNumber": 3,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child waking up in a cosy bed, rubbing their sleepy eyes, a mysterious golden glowing envelope sitting on a wooden bedside table, early morning sunlight, children's picture book illustration, soft watercolour, warm colours",
+      "text": "One sunny morning, [NAME] woke up and found something extraordinary.\n\nThere, on the bedside table, was a golden envelope with [NAME]'s name written on it in shimmering silver ink.\n\n\"For me?\" said [NAME]. \"But who left this here?\""
+    },
+    {
+      "pageNumber": 4,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child holding and unfolding a large magical glowing treasure map covered in illustrations of forests, sparkling crystal mountains, and a great golden star at the centre, wonder on their face, children's picture book illustration, soft watercolour",
+      "text": "Inside the envelope was the most wonderful map [NAME] had ever seen.\n\nIt showed forests full of talking trees, mountains made of sparkling crystals, and right in the very middle — a golden star with the words:\n\n\"The Greatest Treasure in the World — waiting for [NAME].\""
+    },
+    {
+      "pageNumber": 5,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child at the front door of a cosy house wearing a little backpack, a parent waving goodbye with a big smile, a magical glowing forest visible in the background, children's picture book illustration, soft watercolour, warm and cheerful",
+      "text": "[NAME] packed a biscuit, a water bottle, and [THEIR] favourite teddy bear.\n\n\"I'm going on an adventure!\" [NAME] announced bravely.\n\nAnd with one deep breath, [NAME] stepped outside — and the adventure began."
+    },
+    {
+      "pageNumber": 6,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child looking up in wonder at a huge ancient magical tree with a friendly face — kind wrinkled eyes carved into the bark, emerald green leaves shimmering and rustling, dappled forest light, children's picture book illustration, soft watercolour, magical",
+      "text": "At the edge of the forest stood the most magnificent tree [NAME] had ever seen. It had a kind, wrinkled face and leaves that shimmered like emeralds.\n\n\"Hello, [NAME],\" said the tree in a deep, warm voice. \"I've been waiting for you.\"\n\n[NAME]'s eyes went wide. \"You know my name?\"\n\n\"Oh yes,\" smiled the tree. \"The forest has been expecting someone very special today.\""
+    },
+    {
+      "pageNumber": 7,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child standing at a fork in a forest path — one path is dark and twisted with shadows, the other is bright and filled with colourful flowers and sunshine, looking thoughtful and brave, children's picture book illustration, soft watercolour",
+      "text": "The tree pointed its great branch toward a fork in the path.\n\n\"To find the treasure,\" the tree explained, \"you must make three brave choices. The first one is right here.\"\n\nOne path looked scary — dark and twisty, with strange sounds. The other looked easy — bright and full of flowers.\n\n[NAME] thought carefully. Sometimes the bravest path looks a little scary at first.\n\n\"I'll take the dark path,\" said [NAME] with a deep breath. \"That must be the one that leads somewhere really special.\""
+    },
+    {
+      "pageNumber": 8,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child standing in a breathtaking crystal cave filled with thousands of glittering crystals in every colour — blues, pinks, purples and golds — mouth open in total wonder, a tiny crystal butterfly landing on their nose, children's picture book illustration, soft watercolour, magical",
+      "text": "[NAME] was right! The path led to the most beautiful place imaginable — a cave that sparkled and glowed with crystals of every colour.\n\n\"Oh!\" gasped [NAME]. \"It's like being inside a rainbow!\"\n\nA little crystal butterfly fluttered over and landed gently on [NAME]'s nose.\n\n\"Well done, brave one,\" it whispered. \"You made the right choice. Now onwards — the treasure awaits!\""
+    },
+    {
+      "pageNumber": 9,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child climbing a winding path up a glittering pink crystal mountain, spectacular rainbow views of a magical land below, determination on their face, children's picture book illustration, soft watercolour, bright and adventurous",
+      "text": "Beyond the cave, the crystal mountains stretched toward the sky, their peaks catching the sunlight and scattering rainbows across the land.\n\n[NAME] climbed and climbed, [THEIR] little legs working hard.\n\n\"I can do this,\" [NAME] said with a smile. \"I can do anything.\"\n\nAnd on [NAME] climbed."
+    },
+    {
+      "pageNumber": 10,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child at a riverbank looking at a wide sparkling river, a cute small rabbit, a young fox, and a green frog sitting sadly on the bank unable to cross, a magnificent tall tree visible on the far side, children's picture book illustration, soft watercolour, warm",
+      "text": "At the bottom of the mountain, [NAME] found a wide, sparkling river.\n\nOn the other side stood the tallest, most magnificent tree — but [NAME] wasn't alone. A small rabbit, a fox kit, and a little frog all sat sadly on the bank.\n\n\"We can't get across,\" said the rabbit quietly. \"We've been stuck here all day.\"\n\n[NAME] thought for a moment. [NAME] could simply swim across alone — or [NAME] could help everyone get safely to the other side first.\n\n\"We'll cross together,\" said [NAME] firmly. \"I'll find a way.\""
+    },
+    {
+      "pageNumber": 11,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child and three animals — a rabbit, a fox, and a frog — working together happily to build a small raft from fallen logs, everyone smiling and helping, a sparkling river nearby, children's picture book illustration, soft watercolour, cheerful teamwork",
+      "text": "[NAME] found some big fallen logs and, working together with all the animals, built a perfect little raft.\n\nOne by one, they all climbed aboard — the rabbit, the fox, the frog, and [NAME].\n\n[NAME] steered them safely across the river with a long stick, the water sparkling beneath them.\n\n\"You're the kindest adventurer we've ever met!\" cheered the frog.\n\n[NAME] smiled a great big smile."
+    },
+    {
+      "pageNumber": 12,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child walking happily through a golden magical meadow with a rabbit, a fox, and a frog as companions, everyone looking cheerful and friendly, warm golden light, children's picture book illustration, soft watercolour, joyful",
+      "text": "From that moment on, the rabbit, the fox, and the frog walked beside [NAME] on the adventure.\n\n\"Friends make every journey better,\" said the fox wisely, his ears pricking up with happiness.\n\n[NAME] looked at [THEIR] new companions and felt a warm glow in [THEIR] chest.\n\n\"They really do,\" [NAME] agreed."
+    },
+    {
+      "pageNumber": 13,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A large gentle purple dragon sleeping across a path, blocking the way, a single silver teardrop glistening on its cheek — the dragon looks sad, not scary, a child and three small animals stopping in surprise, children's picture book illustration, soft watercolour",
+      "text": "And then — the friends came to a stop.\n\nBlocking the path was a DRAGON.\n\nA big, scaly, purple dragon — but it wasn't roaring. It was curled up with its head on its paws, and on its cheek shimmered a single silvery tear.\n\n\"What's wrong with it?\" whispered the rabbit.\n\n[NAME] took a step closer."
+    },
+    {
+      "pageNumber": 14,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child sitting gently beside a large purple dragon, reaching out a small kind hand to pat the dragon's nose, the dragon looking surprised and then happy — warm magical light, children's picture book illustration, soft watercolour, gentle and heartfelt",
+      "text": "[NAME] sat down quietly beside the dragon and said softly:\n\n\"Hello. Are you alright?\"\n\nThe dragon's great eyes opened slowly. It sniffled.\n\n\"I'm lonely,\" rumbled the dragon in a tiny voice. \"Nobody ever stops to talk to me. They all run away.\"\n\n[NAME] smiled gently. \"Well, I'm not running. Would you like to be friends?\"\n\nThe dragon blinked. One great tear rolled down its nose. Then — it smiled the most enormous smile."
+    },
+    {
+      "pageNumber": 15,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child riding joyfully on a large friendly purple dragon's back through the sky, a rabbit, fox, and frog holding on with delight, wind in their faces, a bright golden glowing star visible in the distance ahead, children's picture book illustration, soft watercolour, thrilling and happy",
+      "text": "\"Friends?!\" beamed the dragon. \"I've never had a friend before!\"\n\n\"Well, you have four now,\" laughed [NAME].\n\nThe dragon was so happy that [NAME] offered [THEM] a ride — and so the whole merry band soared into the sky, the wind rushing past their ears, the golden star glowing brighter and brighter ahead."
+    },
+    {
+      "pageNumber": 16,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A glowing golden clearing at the top of a hill bathed in beautiful warm light, a beautifully carved wooden treasure chest sitting open in the centre glowing softly, a child and their animal friends approaching with wonder, children's picture book illustration, soft watercolour, magical",
+      "text": "And then they found it.\n\nA golden clearing, bathed in the most beautiful light [NAME] had ever seen. In the centre stood a chest — and it was already open, glowing softly.\n\n[NAME] stepped forward, heart beating fast.\n\n\"What's inside?\" breathed the fox.\n\n[NAME] peered in — and gasped."
+    },
+    {
+      "pageNumber": 17,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child looking into a magical glowing treasure chest with total wonder on their face, inside the chest is a beautiful mirror showing a glowing reflection surrounded by golden light and friends, words engraved in the frame, children's picture book illustration, soft watercolour, emotional and warm",
+      "text": "Inside the chest was a mirror.\n\nBut not an ordinary mirror. This mirror showed [NAME] surrounded by light, by laughter — and by friends.\n\nAnd written in golden letters around the frame were the words:\n\n\"The greatest treasure in the world is YOU — and the friends you make along the way.\"\n\n[NAME] stared at the mirror for a very long time.\n\nThen [NAME] smiled the biggest smile of all."
+    },
+    {
+      "pageNumber": 18,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child and four animal friends waving goodbye at the edge of a magical forest as a beautiful sunset fills the sky with gold, orange, and pink — warm, happy, and peaceful, children's picture book illustration, soft watercolour",
+      "text": "As the golden sun began to sink, [NAME] and the friends made their way back through the crystal mountains, over the sparkling river, and through the whispering forest.\n\nThe dragon flew them home with a great warm swoosh of wings.\n\n\"Will you come back?\" rumbled the dragon hopefully.\n\n\"Every adventure,\" promised [NAME]."
+    },
+    {
+      "pageNumber": 19,
+      "type": "story",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child tucked warmly in a cosy bed, happy and sleepy, the golden envelope sitting on the bedside table with a tiny twinkling star above it, soft moonlight through the curtains, children's picture book illustration, soft watercolour, peaceful and warm",
+      "text": "That night, [NAME] lay in bed with a heart full of happiness.\n\n[NAME] had been brave, kind, and made three wonderful friends.\n\nAnd [NAME] understood something now that [NAME] hadn't understood before."
+    },
+    {
+      "pageNumber": 20,
+      "type": "ending",
+      "hasIllustration": true,
+      "illustrationPrompt": "A child sleeping peacefully in a cosy bed, dream bubbles floating above showing a friendly dragon, a rabbit, a fox, and a frog — all smiling, soft moonlight, stars through the window, children's picture book illustration, soft watercolour, dreamy and magical",
+      "text": "You don't find magic.\n\nYou bring it with you — in your kindness, your bravery, and your big, beautiful heart.\n\nGoodnight, [NAME]. Dream of your next adventure.\n\nThe End. ✨"
+    }
+  ]
+}
