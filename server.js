@@ -21,7 +21,18 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+// Stripe loaded lazily so a missing key doesn't crash the server on startup
+let _stripe = null;
+function getStripe() {
+  if (!_stripe) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('STRIPE_SECRET_KEY is not set — add it in your Railway environment variables');
+    }
+    _stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+  }
+  return _stripe;
+}
 
 // Our services
 const { generateAllIllustrations } = require('./services/falai');
@@ -176,7 +187,7 @@ app.post('/api/orders', upload.single('photo'), async (req, res) => {
     const photoPath = req.file.path;
 
     // Create Stripe PaymentIntent (hold, don't charge yet — charge on approval)
-    const paymentIntent = await stripe.paymentIntents.create({
+    const paymentIntent = await getStripe().paymentIntents.create({
       amount: PRICES[format],
       currency: 'usd',
       capture_method: 'manual',   // We'll capture payment after customer approves preview
@@ -360,7 +371,7 @@ app.post('/api/orders/:orderId/approve', async (req, res) => {
 
     // Capture the Stripe payment
     console.log(`[Server] Capturing payment for order ${order.id}...`);
-    await stripe.paymentIntents.capture(order.stripePaymentIntentId);
+    await getStripe().paymentIntents.capture(order.stripePaymentIntentId);
     order.status = 'payment_captured';
 
     // Upload PDF to Book Vault + create print order
@@ -416,7 +427,7 @@ app.get('/api/orders/:orderId/approve', async (req, res) => {
 
   // Auto-approve via GET link (from email button)
   try {
-    await stripe.paymentIntents.capture(order.stripePaymentIntentId);
+    await getStripe().paymentIntents.capture(order.stripePaymentIntentId);
     order.status = 'payment_captured';
 
     const book = loadBook(order.bookId);
@@ -456,7 +467,7 @@ app.post('/api/webhooks/stripe', express.raw({ type: 'application/json' }), asyn
 
   let event;
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    event = getStripe().webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
   } catch (err) {
     console.error('[Stripe Webhook] Invalid signature:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
