@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Create Your Book — Little Me Library</title>
+  <script src="https://js.stripe.com/v3/"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -850,6 +851,12 @@
           <input type="email" id="email" placeholder="your@email.com" />
         </div>
 
+        <div style="margin-bottom:20px;">
+          <label style="display:block;font-weight:700;font-size:0.92rem;color:var(--blue-deeper);margin-bottom:8px;">Card Details *</label>
+          <div id="card-element" style="padding:14px 18px;border:2px solid var(--grey-200);border-radius:12px;background:white;"></div>
+          <div id="card-error" style="color:#EF4444;font-size:0.85rem;font-weight:600;margin-top:8px;display:none;"></div>
+        </div>
+
         <div style="background:var(--grey-50);border:1px solid var(--grey-200);border-radius:12px;padding:16px;margin-bottom:24px;font-size:0.85rem;color:var(--grey-600);font-weight:600;">
           🔒 <strong>Secure Checkout</strong> — Your payment is processed securely via Stripe. We never store your card details. After payment, you'll receive a digital preview of your personalised book within 24 hours before we send it to print.
         </div>
@@ -865,7 +872,7 @@
 
         <div class="step-nav">
           <button class="btn-back" onclick="goToStep(3)">← Back</button>
-          <button class="btn-primary" style="background:linear-gradient(135deg,#059669,#10b981);font-size:1rem;padding:15px 30px;" onclick="placeOrder()">
+          <button id="pay-btn" class="btn-primary" style="background:linear-gradient(135deg,#059669,#10b981);font-size:1rem;padding:15px 30px;" onclick="placeOrder()">
             🔒 Pay & Create My Book
           </button>
         </div>
@@ -1121,27 +1128,117 @@
     document.getElementById('review-price').textContent = '$' + state.price;
   }
 
-  function placeOrder() {
+  // =============================================
+  // BACKEND + STRIPE INTEGRATION
+  // =============================================
+  const API_URL = 'https://little-me-books-production.up.railway.app';
+
+  // Fetch Stripe publishable key from backend and set up card element
+  let stripe, cardElement;
+
+  async function initStripe() {
+    try {
+      const res = await fetch(`${API_URL}/api/config`);
+      const { publishableKey } = await res.json();
+      stripe = Stripe(publishableKey);
+      const elements = stripe.elements();
+      cardElement = elements.create('card', {
+        style: {
+          base: {
+            fontFamily: 'Nunito, sans-serif',
+            fontSize: '16px',
+            color: '#1F2937',
+            '::placeholder': { color: '#9CA3AF' }
+          }
+        }
+      });
+      cardElement.mount('#card-element');
+    } catch (err) {
+      console.error('Stripe init failed:', err);
+    }
+  }
+
+  // Initialise Stripe when the checkout step becomes visible
+  const _origGoToStep = goToStep;
+  function goToStep(n) {
+    _origGoToStep(n);
+    if (n === 4 && !stripe) initStripe();
+  }
+
+  async function placeOrder() {
     const email = document.getElementById('email').value.trim();
     if (!email || !email.includes('@')) {
       alert('Please enter a valid email address.');
       return;
     }
-    // Generate mock order ref
-    const ref = 'LMB-' + Math.floor(100000 + Math.random() * 900000);
-    document.getElementById('success-name').textContent = state.childName || 'your child';
-    document.getElementById('order-ref-num').textContent = ref;
 
-    // Hide step-4, show success
-    document.getElementById('step-4').classList.remove('active');
-    document.getElementById('step-success').classList.add('active');
-    document.getElementById('sidebar').classList.add('hidden');
-    document.querySelectorAll('.progress-dot').forEach((d, i) => {
-      d.className = 'progress-dot done';
-      d.innerHTML = '✓';
-    });
-    document.getElementById('progress-line').style.width = '100%';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const photoFile = document.getElementById('file-input').files[0];
+    if (!photoFile) {
+      alert('Please go back and upload a photo.');
+      return;
+    }
+
+    const btn = document.getElementById('pay-btn');
+    const cardError = document.getElementById('card-error');
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Processing...';
+    cardError.style.display = 'none';
+
+    try {
+      // Build form data with all order details + photo
+      const formData = new FormData();
+      formData.append('photo', photoFile);
+      formData.append('bookId', state.book === 'magical' ? 'magical-adventure' : state.book);
+      formData.append('childName', state.childName);
+      formData.append('pronounSet', state.gender || 'neutral');
+      formData.append('dedicationMessage', document.getElementById('dedication').value || '');
+      formData.append('format', state.format.toLowerCase());
+      formData.append('customerEmail', email);
+
+      // Submit order to backend — get back Stripe clientSecret
+      const response = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || 'Something went wrong. Please try again.');
+      }
+
+      const { orderId, clientSecret } = await response.json();
+
+      // Confirm card payment with Stripe
+      const { error: stripeError } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: { email }
+        }
+      });
+
+      if (stripeError) {
+        throw new Error(stripeError.message);
+      }
+
+      // SUCCESS — show confirmation screen
+      document.getElementById('success-name').textContent = state.childName || 'your child';
+      document.getElementById('order-ref-num').textContent = orderId;
+      document.getElementById('step-4').classList.remove('active');
+      document.getElementById('step-success').classList.add('active');
+      document.getElementById('sidebar').classList.add('hidden');
+      document.querySelectorAll('.progress-dot').forEach(d => {
+        d.className = 'progress-dot done';
+        d.innerHTML = '✓';
+      });
+      document.getElementById('progress-line').style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      cardError.textContent = err.message;
+      cardError.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = '🔒 Pay & Create My Book';
+    }
   }
 
   // Init: set default format selected
