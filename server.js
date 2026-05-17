@@ -141,6 +141,11 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'Little Me Library API', timestamp: new Date().toISOString() });
 });
 
+// Config — returns public Stripe key to the frontend
+app.get('/api/config', (req, res) => {
+  res.json({ publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || '' });
+});
+
 // =====================
 // POST /api/orders — Create a new order
 // =====================
