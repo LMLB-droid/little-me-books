@@ -1011,7 +1011,10 @@
     }
     document.getElementById('step-' + n).classList.add('active');
     updateProgressBar(n);
-    if (n === 4) updateReviewPanel();
+    if (n === 4) {
+      updateReviewPanel();
+      if (!stripe) initStripe();
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1156,13 +1159,6 @@
     } catch (err) {
       console.error('Stripe init failed:', err);
     }
-  }
-
-  // Initialise Stripe when the checkout step becomes visible
-  const _origGoToStep = goToStep;
-  function goToStep(n) {
-    _origGoToStep(n);
-    if (n === 4 && !stripe) initStripe();
   }
 
   async function placeOrder() {
